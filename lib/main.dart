@@ -1,3 +1,4 @@
+import 'package:buku_sqflite_mi2c/uiscreen/list_view_buku.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const ListViewBuku(),debugShowCheckedModeBanner: false,
     );
   }
 }
