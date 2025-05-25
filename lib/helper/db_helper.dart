@@ -47,7 +47,7 @@ class DatabaseHelper{
     return await db.update('tb_buku', buku.toMap(), where: 'id = ?', whereArgs: [buku.id]);
   }
   
-  Future<int> deleteUser(int id) async{
+  Future<int> deleteBuku(int id) async{
     Database db = await instance.db;
     return await db.delete('tb_buku', where: 'id = ?', whereArgs: [id]);
   }

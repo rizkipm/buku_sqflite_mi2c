@@ -75,8 +75,8 @@ class _AddbukuViewState extends State<AddbukuView> {
                           _judulBukuController.text.isEmpty
                               ? _validateJudul = true
                               : _validateJudul = false;
-
                         });
+                        //ketika data sudah di isi
                         if (_validateNama == false &&
                             _validateJudul == false ) {
                           // print("Good Data Can Save");

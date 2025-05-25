@@ -24,13 +24,6 @@ class _ListViewBukuState extends State<ListViewBuku> {
     _fetchDataBuku();
   }
 
-  // Future<void> _fetchDataBuku() async{
-  //   final bukuMaps = await DatabaseHelper.instance.queryAllBuku();
-  //   setState(() {
-  //     _buku = bukuMaps.map((bukuMaps) => ModelBuku.fromMap(bukuMaps)).toList();
-  //   });
-  // }
-
   Future<void> _fetchDataBuku() async {
     setState(() {
       _isLoading = true;
@@ -58,12 +51,12 @@ class _ListViewBukuState extends State<ListViewBuku> {
                   style: TextButton.styleFrom(
                       foregroundColor: Colors.white, backgroundColor: Colors.red),
                   onPressed: ()  async{
-                    var result=await DatabaseHelper.instance.deleteUser(bukuId);
+                    var result=await DatabaseHelper.instance.deleteBuku(bukuId);
                     if (result != null) {
                       Navigator.pop(context);
                       _fetchDataBuku();
                       _showSuccessSnackBar(
-                          'User Detail Deleted Success');
+                          'Buku Id ${bukuId} berhasil di hapus');
                     }
                   },
                   child: const Text('Delete')),
@@ -78,6 +71,9 @@ class _ListViewBukuState extends State<ListViewBuku> {
           );
         });
   }
+
+  //Demo : 1. Proses Tambah, 2. Data otomatis bertambah di list setelah add data 3. Bisa delete dan ada snackbar
+  //4. Lanjutin page edit sendiri dan bisa simpan hasil update nya kemudian muncul pesan berhasil update.
 
   _showSuccessSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -103,19 +99,6 @@ class _ListViewBukuState extends State<ListViewBuku> {
           ),
         ],
       ),
-      // body: ListView.builder(
-      //   itemCount: _buku.length,
-      //   itemBuilder: (context, index){
-      //     return ListTile(
-      //       title: Text(_buku[index].namaBuku),
-      //       subtitle: Text(_buku[index].judulBuku),
-      //       onLongPress: (){
-      //         _deleteFormDialog(context, _buku[index].id);
-      //       },
-      //     );
-      //   },
-      // ),
-
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
@@ -124,6 +107,7 @@ class _ListViewBukuState extends State<ListViewBuku> {
           return ListTile(
             title: Text(_buku[index].namaBuku),
             subtitle: Text(_buku[index].judulBuku),
+            //delete
             onLongPress: () {
               _deleteFormDialog(context, _buku[index].id);
             },
